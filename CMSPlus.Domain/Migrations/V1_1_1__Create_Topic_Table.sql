@@ -143,6 +143,20 @@ CREATE TABLE [dbo].[Topics](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
     ) ON [PRIMARY]
     GO
+    CREATE TABLE [dbo].[Comments](
+    [Id] [int] IDENTITY(1,1) NOT NULL,
+    [UserName] [varchar](255) NOT NULL,
+    [Comment] [nvarchar](1500) NOT NULL,
+    [TopicId] [int] FOREIGN KEY REFERENCES Topics (Id),
+    [CreatedOnUtc] [datetime] NOT NULL,
+    [UpdatedOnUtc] [datetime] NOT NULL
+    PRIMARY KEY CLUSTERED
+(
+[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+    ) ON [PRIMARY]
+    go
+
 ALTER TABLE [dbo].[Topics] ADD  DEFAULT (getdate()) FOR [CreatedOnUtc]
 ALTER TABLE [dbo].[Topics] ADD  DEFAULT (getdate()) FOR [UpdatedOnUtc]
     GO
