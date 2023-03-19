@@ -1,0 +1,21 @@
+﻿@model CMSPlus.Domain.Models.CommentModels.CommentModel
+
+<partial name="_RichTextEditorPartial" />
+<form  asp-controller="Topic" asp-action="Details" method="post">
+    <p>@Html.ValidationSummary()</p>
+        <input asp-for="TopicId" hidden />
+        <label asp-for="UserName" class="m-1"></label>
+        <input asp-for="UserName" class="form-control"/>
+        <label asp-for="Comment" class="m-1"></label>
+        <textarea asp-for="Comment" id="div_editor1"></textarea>
+        
+        <script>
+            var editor1 = new RichTextEditor(document.getElementById("div_editor1"));
+            editor1.attachEvent("change", function () {
+                document.getElementById("inp_htmlcode").value = editor1.getHTMLCode();
+            });
+        </script>
+    <div class="row-12 m-3 text-center">
+        <button type="submit" class="btn btn-primary" style="width: 10%">Submit</button>
+    </div>
+</form>

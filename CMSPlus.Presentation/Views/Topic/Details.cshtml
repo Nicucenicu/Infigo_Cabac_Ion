@@ -1,3 +1,4 @@
+@using CMSPlus.Domain.Models.CommentModels;
 @model CMSPlus.Domain.Models.TopicModels.TopicDetailsModel
 
 @{
@@ -13,5 +14,20 @@
     <p class="row-12 text-black">@Html.Raw(Model.Body)</p>
     <div class="row">
         <p class="col-12 text-black-50 text-end">System name: @Model.SystemName</p>
+    </div>
+
+    @Html.Partial("_CreateCommentPartial", new CommentModel(){TopicId=Model.Id})
+
+    <div class="col-12">
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="row-12 my-3 border rounded">
+                <div class="row-12 mx-3">
+                    <p class="row-12 text-black">@Html.Raw(comment.Comment)</p>
+                    <p class="text-end text-black-50">@comment.UserName</p>
+                </div>
+            </div>
+        }
+
     </div>
 </div>
