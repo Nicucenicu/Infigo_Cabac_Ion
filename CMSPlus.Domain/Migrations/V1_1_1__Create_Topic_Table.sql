@@ -147,7 +147,7 @@ CREATE TABLE [dbo].[Topics](
     [Id] [int] IDENTITY(1,1) NOT NULL,
     [UserName] [varchar](255) NOT NULL,
     [Comment] [nvarchar](1500) NOT NULL,
-    [TopicId] [int] FOREIGN KEY REFERENCES Topics (Id),
+    [TopicId] [int] REFERENCES Topics (Id) ON DELETE CASCADE,
     [CreatedOnUtc] [datetime] NOT NULL,
     [UpdatedOnUtc] [datetime] NOT NULL
     PRIMARY KEY CLUSTERED
